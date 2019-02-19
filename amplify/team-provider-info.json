@@ -1,0 +1,14 @@
+{
+    "please": {
+        "awscloudformation": {
+            "AuthRoleName": "androotsfinal-20190215145128-authRole",
+            "UnauthRoleArn": "arn:aws:iam::917999008743:role/androotsfinal-20190215145128-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::917999008743:role/androotsfinal-20190215145128-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "androotsfinal-20190215145128-deployment",
+            "UnauthRoleName": "androotsfinal-20190215145128-unauthRole",
+            "StackName": "androotsfinal-20190215145128",
+            "StackId": "arn:aws:cloudformation:eu-west-1:917999008743:stack/androotsfinal-20190215145128/2cb8d520-3131-11e9-9bbf-0673c4cbbe82"
+        }
+    }
+}

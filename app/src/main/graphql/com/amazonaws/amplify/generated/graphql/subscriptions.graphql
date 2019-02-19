@@ -1,0 +1,100 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateCountry {
+  onCreateCountry {
+    id
+    name
+    continent
+    usersFrom
+    longitude
+    latitude
+    capital
+  }
+}
+subscription OnUpdateCountry {
+  onUpdateCountry {
+    id
+    name
+    continent
+    usersFrom
+    longitude
+    latitude
+    capital
+  }
+}
+subscription OnDeleteCountry {
+  onDeleteCountry {
+    id
+    name
+    continent
+    usersFrom
+    longitude
+    latitude
+    capital
+  }
+}
+subscription OnCreateCity {
+  onCreateCity {
+    id
+    name
+    country
+    usersKnowWell
+    usersLived
+  }
+}
+subscription OnUpdateCity {
+  onUpdateCity {
+    id
+    name
+    country
+    usersKnowWell
+    usersLived
+  }
+}
+subscription OnDeleteCity {
+  onDeleteCity {
+    id
+    name
+    country
+    usersKnowWell
+    usersLived
+  }
+}
+subscription OnCreateUser {
+  onCreateUser {
+    id
+    firstName
+    lastName
+    story
+    slackHandle
+    languages
+    from
+    lived
+    placesKnowWell
+  }
+}
+subscription OnUpdateUser {
+  onUpdateUser {
+    id
+    firstName
+    lastName
+    story
+    slackHandle
+    languages
+    from
+    lived
+    placesKnowWell
+  }
+}
+subscription OnDeleteUser {
+  onDeleteUser {
+    id
+    firstName
+    lastName
+    story
+    slackHandle
+    languages
+    from
+    lived
+    placesKnowWell
+  }
+}

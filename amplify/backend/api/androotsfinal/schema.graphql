@@ -1,0 +1,27 @@
+type Country @model {
+  id: ID!
+  name: String!
+  continent: String!
+  usersFrom: [String]
+  longitude: String
+  latitude: String
+  capital: String
+}
+type City @model {
+  id: ID!
+  name: String!
+  country: String!
+  usersKnowWell: [String]
+  usersLived: [String]
+}
+type User @model {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  story: String
+  slackHandle: String
+  languages: [String!]!
+  from: [String!]!
+  lived: [String!]
+  placesKnowWell: [String!]
+}

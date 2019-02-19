@@ -1,0 +1,100 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateCountry($input: CreateCountryInput!) {
+  createCountry(input: $input) {
+    id
+    name
+    continent
+    usersFrom
+    longitude
+    latitude
+    capital
+  }
+}
+mutation UpdateCountry($input: UpdateCountryInput!) {
+  updateCountry(input: $input) {
+    id
+    name
+    continent
+    usersFrom
+    longitude
+    latitude
+    capital
+  }
+}
+mutation DeleteCountry($input: DeleteCountryInput!) {
+  deleteCountry(input: $input) {
+    id
+    name
+    continent
+    usersFrom
+    longitude
+    latitude
+    capital
+  }
+}
+mutation CreateCity($input: CreateCityInput!) {
+  createCity(input: $input) {
+    id
+    name
+    country
+    usersKnowWell
+    usersLived
+  }
+}
+mutation UpdateCity($input: UpdateCityInput!) {
+  updateCity(input: $input) {
+    id
+    name
+    country
+    usersKnowWell
+    usersLived
+  }
+}
+mutation DeleteCity($input: DeleteCityInput!) {
+  deleteCity(input: $input) {
+    id
+    name
+    country
+    usersKnowWell
+    usersLived
+  }
+}
+mutation CreateUser($input: CreateUserInput!) {
+  createUser(input: $input) {
+    id
+    firstName
+    lastName
+    story
+    slackHandle
+    languages
+    from
+    lived
+    placesKnowWell
+  }
+}
+mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    id
+    firstName
+    lastName
+    story
+    slackHandle
+    languages
+    from
+    lived
+    placesKnowWell
+  }
+}
+mutation DeleteUser($input: DeleteUserInput!) {
+  deleteUser(input: $input) {
+    id
+    firstName
+    lastName
+    story
+    slackHandle
+    languages
+    from
+    lived
+    placesKnowWell
+  }
+}
