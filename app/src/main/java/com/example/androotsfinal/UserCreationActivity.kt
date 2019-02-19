@@ -2,30 +2,21 @@ package com.example.androotsfinal
 
 import android.app.ActionBar
 import android.content.Intent
-import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.amazonaws.amplify.generated.graphql.CreateTodoMutation
 import com.amazonaws.amplify.generated.graphql.CreateUserMutation
 import com.amazonaws.mobile.config.AWSConfiguration
 import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient
 import com.apollographql.apollo.GraphQLCall
 import com.apollographql.apollo.exception.ApolloException
-import type.CreateTodoInput
 import type.CreateUserInput
-import android.icu.util.ULocale.getCountry
-import android.icu.util.ULocale.getLanguage
-import android.provider.AlarmClock.EXTRA_MESSAGE
-import android.support.v4.content.ContextCompat
-import android.text.Layout
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class UserCreationActivity : AppCompatActivity() {
 
     private lateinit var client: AWSAppSyncClient
 
@@ -34,7 +25,9 @@ class MainActivity : AppCompatActivity() {
     private val knownLanguages = ArrayList<String>()
     private val countries = ArrayList<String>()
     private val fromCountries = ArrayList<String>()
-    private val USER_FIRST_NAME = ""
+    private val USER_FIRST_NAME = "USER_FIRST_NAME"
+    private val USER_LAST_NAME = "USER_LAST_NAME"
+    private var USER_ID = "USER_ID"
 
     //used to add margin to view programmatically
     private val params = ActionBar.LayoutParams(
@@ -43,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_user_creation)
 
         client = AWSAppSyncClient.builder()
             .context(applicationContext)
@@ -73,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         languagesSpinner.adapter = adapter
     }
 
-    fun languagesSpinnerListener() {
+    private fun languagesSpinnerListener() {
 //        val textViewArray = ArrayList<TextView>() //empty array list of TextViews
         val languagesSpinner = findViewById<Spinner>(R.id.languagesSpinner)
         val languagesLayout = findViewById<LinearLayout>(R.id.chosen_languages_layout)
@@ -124,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 //        livedCountrySpinner.adapter = livedCountryAdapter
     }
 
-    fun fromCountriesSpinnerListener() {
+    private fun fromCountriesSpinnerListener() {
         val mTextViewArray = ArrayList<TextView>() //empty array list of TextViews
         val fromCountrySpinner = findViewById<Spinner>(R.id.fromCountrySpinner)
         val fromCountryLayout = findViewById<LinearLayout>(R.id.fromCountryLayout)
@@ -179,11 +172,6 @@ class MainActivity : AppCompatActivity() {
         val story = findViewById<EditText>(R.id.storyInput).text.toString()
 
         runMutation(firstName, secondName, story, knownLanguages, fromCountries)
-
-        val intent = Intent(this, DisplayUserActivity::class.java).apply {
-            putExtra(USER_FIRST_NAME, firstName)
-        }
-        startActivity(intent)
     }
 
     fun runMutation(firstName : String, secondName : String, story : String, knownLanguages : ArrayList<String>, from : ArrayList<String>) {
@@ -198,13 +186,23 @@ class MainActivity : AppCompatActivity() {
         client.mutate(CreateUserMutation.builder().input(createUserInput).build())
             .enqueue(mutationCallback)
     }
+
     private val mutationCallback = object : GraphQLCall.Callback<CreateUserMutation.Data>() {
         override fun onResponse(response: com.apollographql.apollo.api.Response<CreateUserMutation.Data>) {
             Log.e("TEST", response.data().toString()) //To change body of created functions use File | Settings | File Templates.
+            startActivity(response.data()?.createUser()?.id().toString())
         }
 
         override fun onFailure(e: ApolloException) {
             Log.e("TEST", e.toString())
         }
+    }
+
+    //wait for id of new user to come through before going to new activity
+    fun startActivity (id : String) {
+        val intent = Intent(this, DisplayUserActivity::class.java).apply {
+            putExtra(USER_ID, id)
+        }
+        startActivity(intent)
     }
 }
